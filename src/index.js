@@ -27,8 +27,7 @@ function handleInput(query) {
   if (inputCount.length !== 0) {
     fetchCountries(inputCount).then(search => showCountries(search));
   } else {
-    refs.countriesList.innerHTML = null;
-    refs.outputCountrInfo.innerHTML = null;
+    removeSearch;
   }
 }
 
@@ -44,20 +43,19 @@ function showCountries(items) {
         delay: 500,
         text: 'Too many matches found. Please enter a more specific query!',
       });
-      refs.outputCountrInfo.innerHTML = null;
-      refs.countriesList.innerHTML = null;
+
       break;
 
     case items.length > 2 && items.length < 10:
       console.log('2-10');
       createListCountries(countries.splice(0, 10));
-      refs.outputCountrInfo.innerHTML = null;
+
       break;
 
     case items.length === 1:
       console.log('1');
       createCountries(...countries);
-      refs.countriesList.innerHTML = null;
+
       break;
   }
 }
@@ -72,4 +70,13 @@ function createListCountries(countries) {
 function createCountries(countries) {
   const cardInfo = temp(countries);
   refs.outputCountrInfo.innerHTML = cardInfo;
+}
+// function removeListCountries() {
+//   refs.countriesList.remove(countriesHtml);
+// }
+// function removeCountriesInfo() {
+//   refs.outputCountrInfo.remove(cardInfo);
+// }
+function removeSearch() {
+  refs.input.removeEventListener('input', debouncedHandleInput);
 }
