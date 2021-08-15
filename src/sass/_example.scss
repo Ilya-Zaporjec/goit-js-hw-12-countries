@@ -1,0 +1,96 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+    'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.get_countries {
+  padding-top: 50px;
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  text-align: left;
+  position: relative;
+}
+
+.input-form {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.list__counters {
+  padding-right: 150px;
+  text-align: left;
+  list-style: none;
+}
+
+.output_all {
+  text-align: center;
+}
+
+.container {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.box__list,
+.title-lang {
+  margin: 10px 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.box__title {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.box__text {
+  margin: 0;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: normal;
+  color: red;
+}
+
+.lang_list {
+  text-align: right;
+  display: flex;
+  justify-content: right;
+}
+
+.lang-list__item {
+  text-align: center;
+  margin: 10px 0;
+  list-style: none;
+}
+
+.flag-counter {
+  width: 300px;
+}

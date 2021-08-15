@@ -1,0 +1,28 @@
+  
+<div class="wrapper">
+                <h1>{{name}}</h1>
+                <div class="container">
+                    <ul class="box">
+                        <li class="box__list">
+                            <h3 class="box__title">Capital:</h3> 
+                            <spanc class="box__text">{{capital}}</span>
+                        </li>
+                        <li class="box__list">
+                          <h3 class="box__title">Population:</h3> 
+                          <span class="box__text">{{population}}</span>
+                        </li>
+
+                        <h3 class="box__title title-lang">languages:</h3>
+                        <ul class="lang-list">
+                          
+                          {{#each languages }}
+                            <li class="lang-list__item"><span class="box__text">{{this.name}}</span></li>
+                          {{/each}}
+                        </ul>
+                    </ul>
+            
+                    <div class="box_flag-js">
+                        <img class="flag-counter" src="{{flag}}">
+                    </div>
+                </div>
+            </div>

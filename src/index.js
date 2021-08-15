@@ -1,6 +1,7 @@
 import './sass/main.scss';
 import fetchCountries from './fetchCountries.js';
 
+import temp from './template.hbs';
 import _ from 'lodash';
 import { alert, defaultModules } from '@pnotify/core';
 import '@pnotify/core/dist/PNotify.css';
@@ -13,23 +14,25 @@ defaultModules.set(PNotifyMobile, {});
 const refs = {
   input: document.getElementById('input-id'),
   countriesList: document.getElementById('countries'),
+  outputCountrInfo: document.getElementById('output'),
 };
 
 const debouncedHandleInput = _.debounce(handleInput, 500);
-refs.input.addEventListener('input', handleInput);
+refs.input.addEventListener('input', debouncedHandleInput);
 
 function handleInput(query) {
   query.preventDefault();
   const inputCount = query.target.value;
 
-  if (inputCount.length !== 0) {
-    fetchCountries(inputCount).then(search => shoCountries(search));
+  if (inputCount.length > 0) {
+    fetchCountries(inputCount).then(search => showCountries(search));
   } else {
-    input.removeEventListener('input', handleInput);
+    refs.countriesList.innerHTML = null;
+    refs.outputCountrInfo.innerHTML = null;
   }
 }
 
-function shoCountries(items) {
+function showCountries(items) {
   let countries = items.map(item => item);
 
   switch (true) {
@@ -37,26 +40,36 @@ function shoCountries(items) {
       console.log('more');
 
       alert({
-        type: 'notice',
+        type: 'error ',
+        delay: 1500,
         text: 'Too many matches found. Please enter a more specific query!',
       });
+      refs.outputCountrInfo.innerHTML = null;
+      refs.countriesList.innerHTML = null;
       break;
 
     case items.length > 2 && items.length < 10:
       console.log('2-10');
-      createListCountries(countries.splice(0, 9));
+      createListCountries(countries.splice(0, 10));
+      refs.outputCountrInfo.innerHTML = null;
       break;
 
     case items.length === 1:
       console.log('1');
       createCountries(...countries);
+      refs.countriesList.innerHTML = null;
       break;
   }
 }
 
 function createListCountries(countries) {
-  const countriesHtml = countries.map(country => `<ol>${country.name}</ol>`).join('');
+  const countriesHtml = countries
+    .map(country => `<ol class="name-countr__list">${country.name}</ol>`)
+    .join('');
   refs.countriesList.insertAdjacentHTML('afterbegin', countriesHtml);
 }
 
-// function createCountries(countries) {}
+function createCountries(countries) {
+  const cardInfo = temp(countries);
+  refs.outputCountrInfo.innerHTML = cardInfo;
+}
