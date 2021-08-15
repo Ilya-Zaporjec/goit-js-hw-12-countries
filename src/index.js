@@ -24,7 +24,7 @@ function handleInput(query) {
   query.preventDefault();
   const inputCount = query.target.value;
 
-  if (inputCount.length > 0) {
+  if (inputCount.length !== 0) {
     fetchCountries(inputCount).then(search => showCountries(search));
   } else {
     refs.countriesList.innerHTML = null;
@@ -41,7 +41,7 @@ function showCountries(items) {
 
       alert({
         type: 'error ',
-        delay: 1500,
+        delay: 500,
         text: 'Too many matches found. Please enter a more specific query!',
       });
       refs.outputCountrInfo.innerHTML = null;
