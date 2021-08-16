@@ -27,7 +27,7 @@ function handleInput(query) {
   if (inputCount.length !== 0) {
     fetchCountries(inputCount).then(search => showCountries(search));
   } else {
-    removeSearch;
+    removeSearch();
   }
 }
 
@@ -73,13 +73,13 @@ function createCountries(countries) {
   refs.outputCountrInfo.innerHTML = cardInfo;
 }
 function removeListCountries() {
-  refs.countriesList.innerHTML = null;
+  refs.countriesList.innerHTML = '';
 }
 function removeCountriesInfo() {
-  refs.outputCountrInfo.innerHTML = null;
+  refs.outputCountrInfo.innerHTML = '';
 }
 function removeSearch() {
   refs.input.removeEventListener('input', 'debouncedHandleInput');
-  refs.countriesList.innerHTML = null;
-  refs.outputCountrInfo.innerHTML = null;
+  refs.countriesList.innerHTML = '';
+  refs.outputCountrInfo.innerHTML = '';
 }
