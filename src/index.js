@@ -40,7 +40,7 @@ function showCountries(items) {
 
       alert({
         type: 'error ',
-        delay: 500,
+        delay: 1500,
         text: 'Too many matches found. Please enter a more specific query!',
       });
       removeListCountries();
