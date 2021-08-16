@@ -13,7 +13,7 @@ defaultModules.set(PNotifyMobile, {});
 
 const refs = {
   input: document.getElementById('input-id'),
-  countriesList: document.getElementById('countries'),
+  countriesList: document.getElementById('coutnries_list'),
   outputCountrInfo: document.getElementById('output'),
 };
 
