@@ -43,7 +43,7 @@ function showCountries(items) {
         delay: 500,
         text: 'Too many matches found. Please enter a more specific query!',
       });
-
+      removeListCountries();
       break;
 
     case items.length > 2 && items.length < 10:
@@ -55,7 +55,7 @@ function showCountries(items) {
     case items.length === 1:
       console.log('1');
       createCountries(...countries);
-
+      removeListCountries();
       break;
   }
 }
@@ -65,18 +65,21 @@ function createListCountries(countries) {
     .map(country => `<ol class="name-countr__list">${country.name}</ol>`)
     .join('');
   refs.countriesList.insertAdjacentHTML('afterbegin', countriesHtml);
+  removeCountriesInfo();
 }
 
 function createCountries(countries) {
   const cardInfo = temp(countries);
   refs.outputCountrInfo.innerHTML = cardInfo;
 }
-// function removeListCountries() {
-//   refs.countriesList.remove(countriesHtml);
-// }
-// function removeCountriesInfo() {
-//   refs.outputCountrInfo.remove(cardInfo);
-// }
+function removeListCountries() {
+  refs.countriesList.innerHTML = null;
+}
+function removeCountriesInfo() {
+  refs.outputCountrInfo.innerHTML = null;
+}
 function removeSearch() {
-  refs.input.removeEventListener('input', debouncedHandleInput);
+  refs.input.removeEventListener('input', 'debouncedHandleInput');
+  refs.countriesList.innerHTML = null;
+  refs.outputCountrInfo.innerHTML = null;
 }
