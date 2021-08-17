@@ -33,7 +33,6 @@ function handleInput(query) {
 
 function showCountries(items) {
   let countries = items.map(item => item);
-
   switch (true) {
     case items.length > 10:
       console.log('more');
@@ -83,3 +82,14 @@ function removeSearch() {
   refs.countriesList.innerHTML = '';
   refs.outputCountrInfo.innerHTML = '';
 }
+
+fetchCountries(searchQuery).then(successResponse => {
+  if (successResponse.status != 200) {
+    alert({
+      type: 'error ',
+      delay: 1500,
+      text: 'Please enter a valid query!',
+    });
+    return;
+  }
+});
